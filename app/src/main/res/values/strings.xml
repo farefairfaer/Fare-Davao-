@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Fare Davao</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="jeepney_routes">Jeepney Routes</string>
+    <string name="place_name" />
+    <string name="coordinates" />
+    <string name="textview">TextView</string>
+    <string name="back">Back</string>
+    <string name="fare">Fare:</string>
+    <string name="recommended_routes">Recommended Routes:</string>
+    <string name="find_routes">Find Routes</string>
+    <string name="destination">Destination</string>
+    <string name="starting_location">Starting Location</string>
+    <string name="clear_all">Clear All</string>
+    <string name="legend">Legend</string>
+    <string name="show">Show</string>
+    <string-array name="route_list">
+        <item>"Matina Crossing"</item>
+        <item>"Mintal"</item>
+        <item>"Catalunan Grande"</item>
+        <item>"Maa"</item>
+        <item>"Toril"</item>
+    </string-array>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+</resources>

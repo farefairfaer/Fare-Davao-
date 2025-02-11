@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    tools:context=".tab1"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/startSearch"
+        android:drawablePadding="8dp"
+        android:layout_width="350dp"
+        android:layout_height="37dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:paddingStart="20dp"
+        android:padding="8dp"
+        android:background="@drawable/searchbar"
+        android:hint="@string/starting_location"
+        app:drawableStartCompat="@drawable/baseline_search_24" />
+
+    <TextView
+        android:id="@+id/destinationSearch"
+
+        android:layout_width="350dp"
+        android:layout_height="37dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/searchbar"
+        android:drawablePadding="8dp"
+        android:paddingStart="20dp"
+        android:padding ="8dp"
+        android:hint="@string/destination"
+        app:drawableStartCompat="@drawable/baseline_search_24" />
+
+    <Button
+        android:id="@+id/findRoutesBTN"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:text="@string/find_routes"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/darkgray"
+        android:textAllCaps="false"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:background="@drawable/button" />
+
+
+</LinearLayout>
