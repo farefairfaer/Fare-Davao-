@@ -17,15 +17,14 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import org.osmdroid.util.GeoPoint;
 
 import java.util.Objects;
 
-public class tab1 extends Fragment {
+public class InputFragment extends Fragment {
     GeoPoint startLoc,endLoc;
+    String address1, address2;
 
     public TextView startSearch, destSearch;
 
@@ -33,9 +32,13 @@ public class tab1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_tab1, container, false);
+        View view = inflater.inflate(R.layout.input_fragment, container, false);
         startSearch = view.findViewById(R.id.startSearch);
         destSearch = view.findViewById(R.id.destinationSearch);
+
+        startSearch.setOnClickListener(v -> openSearch("start"));
+        destSearch.setOnClickListener(v -> openSearch("destin"));
+
         Button findRoutesBTN = view.findViewById(R.id.findRoutesBTN);
         findRoutesBTN.setOnClickListener(v -> {
             if (startLoc==null || endLoc==null){
@@ -44,11 +47,7 @@ public class tab1 extends Fragment {
             } else {
                 tab1Listener.userInput(startLoc, endLoc);
             }
-
         });
-        startSearch.setOnClickListener(v -> openSearch("start"));
-        destSearch.setOnClickListener(v -> openSearch("destin"));
-
         return view;
     }
 
@@ -58,7 +57,7 @@ public class tab1 extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        tab1Listener= (tab1Listener) context ;
+        tab1Listener= (tab1Listener) context;
         searchListener = (searchListener) context;
     }
 
@@ -66,7 +65,7 @@ public class tab1 extends Fragment {
         void userInput(GeoPoint startLoc, GeoPoint endLoc);
     }
     public interface searchListener {
-        void markLoc(GeoPoint location, String buttonType);
+        void markLoc(GeoPoint location, String buttonType, String startAddress, String destination);
     }
     private final ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -80,17 +79,18 @@ public class tab1 extends Fragment {
                         GeoPoint location = new GeoPoint(Double.parseDouble(lat), Double.parseDouble(lon));
                         String bType = data.getStringExtra("buttonType");
 
-                        String displayName = data.getStringExtra("display_name");
                         if(Objects.equals(data.getStringExtra("buttonType"),"start")){
-                            Log.d("tab1", "Updating startSearch with: " + displayName);
-                            startSearch.setText(displayName);
-                            searchListener.markLoc(location, bType);
+                            address1 = data.getStringExtra("display_name");
+                            Log.d("tab1", "Updating startSearch with: " + address1);
+                            startSearch.setText(address1);
+                            searchListener.markLoc(location, bType,address1,address2);
                             startLoc=location;
                         }
                         else if(Objects.equals(data.getStringExtra("buttonType"),"destin")){
-                            Log.d("tab1", "Updating startSearch with: " + displayName);
-                            destSearch.setText(displayName);
-                            searchListener.markLoc(location, bType);
+                            address2 = data.getStringExtra("display_name");
+                            Log.d("tab1", "Updating startSearch with: " + address2);
+                            destSearch.setText(address2);
+                            searchListener.markLoc(location, bType,address1, address2);
                             endLoc=location;
                         }
                     }
@@ -98,7 +98,7 @@ public class tab1 extends Fragment {
             }
     );
     public void openSearch(String buttonType){
-        Intent getLoc = new Intent(tab1.this.getContext(), searchActivity.class);
+        Intent getLoc = new Intent(InputFragment.this.getContext(), searchActivity.class);
         getLoc.putExtra("buttonType", buttonType);
         launcher.launch(getLoc);
     }

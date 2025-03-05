@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    tools:context=".tab1"
+    android:layout_height="270dp"
+    tools:context=".InputFragment"
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->

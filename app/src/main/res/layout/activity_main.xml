@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,17 +9,22 @@
 
     <org.osmdroid.views.MapView
         android:id="@+id/map"
+        android:hardwareAccelerated="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
     <ImageButton
         android:id="@+id/fareMatrixListBTN"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="end"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="true"
         android:background="@drawable/rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/routeListBTN"
         app:srcCompat="@drawable/baseline_article_24" />
 
     <Button
@@ -27,111 +32,118 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_margin="10dp"
-        android:spinnerMode="dialog"
-        android:textAlignment="viewStart"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner_background"
         android:paddingStart="20dp"
+        android:spinnerMode="dialog"
+        android:text="@string/jeepney_routes"
+        android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textSize="15sp"
-        android:text="@string/jeepney_routes"
-        android:background="@drawable/spinner_background"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/legendLayout"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rectangle"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
-        android:visibility="gone">
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/routeListBTN">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
             android:text="@string/legend"
             android:textSize="13sp"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="15dp"/>
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/legendView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp" />
     </LinearLayout>
 
     <ImageButton
         android:id="@+id/zoomOutBTN"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:translationY="-30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/rectangle"
         app:layout_anchor="@id/centerMapBTN"
         app:layout_anchorGravity="top|center"
-        android:background="@drawable/rectangle"
-        app:srcCompat="@drawable/sharp_remove_black_36"/>
+        app:layout_constraintBottom_toTopOf="@+id/centerMapBTN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/sharp_remove_black_36" />
 
     <ImageButton
         android:id="@+id/zoomInBTN"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:translationY="-30dp"
-        app:layout_anchor="@id/zoomOutBTN"
-        app:layout_anchorGravity="top|center"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/rectangle"
-        app:srcCompat="@drawable/sharp_add_black_36"/>
+        app:layout_constraintBottom_toTopOf="@+id/zoomOutBTN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/sharp_add_black_36" />
 
     <ImageButton
         android:id="@+id/centerMapBTN"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_below="@id/bottomSheet"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/rectangle"
         android:scaleType="centerCrop"
-        android:translationX="-15dp"
-        android:translationY="-30dp"
-        app:layout_anchor="@id/bottomSheet"
-        app:layout_anchorGravity="top|end"
+        app:layout_anchorGravity="top"
+        app:layout_constraintBottom_toTopOf="@+id/bottomSheet"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/baseline_all_out_24" />
 
     <Button
+        android:id="@+id/clearALLBTN"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/clearALLBTN"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button"
         android:text="@string/clear_all"
-        app:layout_anchor="@id/bottomSheet"
-        app:layout_anchorGravity="top|center"
-        android:textSize="15sp"
-        android:translationY="-30dp"
         android:visibility="gone"
         android:textAllCaps="false"
-        android:background="@drawable/button"/>
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomSheet"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <FrameLayout
+    <ScrollView
         android:id="@+id/bottomSheet"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        app:layout_anchorGravity="bottom"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        android:background="@drawable/roundedtop">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"
-            android:scaleX="2"
-            app:srcCompat="@drawable/sharp_remove_black_36" />
+        android:layout_height="300dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/rectanglewhite"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainer"
-                android:name="com.example.map1.tab1"
+                android:name="com.example.map1.InputFragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </FrameLayout>
-    </FrameLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

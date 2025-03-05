@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.touchimageview)
+    implementation(libs.databinding.compiler)
     coreLibraryDesugaring (libs.desugar.jdk.libs)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
